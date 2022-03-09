@@ -9,8 +9,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { NavigationContainer } from '@react-navigation/native';
 /*
 
   ------------------------TO-DO-----------------------------------
@@ -23,6 +21,8 @@ import { NavigationContainer } from '@react-navigation/native';
   
 -------------------------------------------------------------------------
 */
+const settingsArray = []    
+
 export const Register = ( { navigation } ) => {
 
   
@@ -30,9 +30,7 @@ export const Register = ( { navigation } ) => {
   const [baseUrl, setBaseUrl] = useState('');
   const [baseImageUrl, setBaseImageUrl] = useState('');
   
-
-
-
+  
   async function handleAsyncStorage() {
     //armazenar valor no cache
     let newUrlEntrie = {
@@ -47,12 +45,13 @@ export const Register = ( { navigation } ) => {
         validInput = false
       }
     })
-    
+
     await AsyncStorage.getItem('@Settings').then(data => {
       if (data !== null && validInput && data !== 'fistState') {
-        const settingsArray = JSON.parse(data);
         settingsArray.push(newUrlEntrie);
         AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray))
+
+
         .then(() => {
           alert('servidor registrado com sucesso!')
         })
@@ -60,10 +59,8 @@ export const Register = ( { navigation } ) => {
           navigation.navigate('Login')
         });
 
-
       } else {
         alert('epa, nao pode haver input vazio!')
-        const settingsArray = [];
       }
     })
     .then(() => getSettings()) //opcional, pois apenas retorna console do get()
