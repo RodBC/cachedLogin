@@ -8,6 +8,13 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+//  dentro da página lista:
+// ->> o primeiro item deve vir como selecionado dentro da pagina Lista
+// ->> item selecionado deve alterar o estado do Redux
+// ->> Deletar item? (fazer um slice do array, passando o index do item
+//   que retornou do Cache GetItem() e depois fazer update do cache com o novo
+//   array sem o item deletado)
+
 export const ViewServer = ({navigation}) => {
 
 
