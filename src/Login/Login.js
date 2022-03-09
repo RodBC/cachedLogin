@@ -56,9 +56,8 @@ export const Login = ({ navigation }) => {
                     <TouchableOpacity
                         onPress={() => {
                             navigation.navigate('ViewServers')
-                        }}
-                        style={styles.registrar}>
-                        <Text style={styles.version}>Alterar Servidor</Text>
+                        }}>
+                        <Text style={styles.registrar}>Alterar Servidor</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -107,13 +106,9 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     registrar: {
-        height: 42,
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 2,
-        color: '#ffffff',
-        width: 200,
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        height: 60,
     },
     textButton: {
         fontSize: 17,

@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import logo from '../assets';
 import { NavigationContainer } from '@react-navigation/native';
 /*
 
@@ -58,7 +57,7 @@ export const Register = ( { navigation } ) => {
           alert('servidor registrado com sucesso!')
         })
         .then(() => {
-          navigation.navigate('ViewServers')
+          navigation.navigate('Login')
         });
 
 
