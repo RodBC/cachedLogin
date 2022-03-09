@@ -61,8 +61,6 @@ export const Register = ( { navigation } ) => {
           navigation.navigate('ViewServers')
         });
 
-        // ->> fazer um .then(), passando msg quando adicionado com sucesso e
-        // depois outro pra navegar pra outra pagina(login).
 
       } else {
         alert('epa, nao pode haver input vazio!')
@@ -73,19 +71,14 @@ export const Register = ( { navigation } ) => {
 
   }
 
-  // ->> fazer um .then(), passando msg quando adicionado com sucesso e
-  // depois outro pra navegar pra outra pagina(login).
 
   const getSettings = async () => {
     try {
       const getSettings = await AsyncStorage.getItem('@Settings');
       console.log(JSON.parse(getSettings), 'atualizado');
-      // if (getSettings !== null) {
-      //   // let parsedSettings = JSON.parse(getSettings);
-      //   console.log(getSettings, '<----')
-      // return getSettings
-      // }
+
     } catch (e) {
+      alert(`erro ao setar as settings previas ${e}`)
       console.log(`erro ao setar as settings previas ${e}`);
     }
   };
