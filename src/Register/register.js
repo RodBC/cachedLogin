@@ -13,17 +13,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import logo from '../assets';
 import { NavigationContainer } from '@react-navigation/native';
 /*
-  -----------------------------TODO-------------------------------------
-  ----------------------------------------------------------------------
-  ->> retornar false(impedir que a função continue) e 
-  message de Alert pro cliente quando faltar qualquer um dos 
-  campos serem preenchidos(length <= 3)
-  ->> fazer um .then(), passando msg quando adicionado com sucesso e
-  depois outro pra navegar pra outra pagina(login).
-  ->> usar useNavigation() do react-native/navigation pra isso.
-  ->> lançar um alert com msg de erro ao entrar no laço Catch(){}
 
-  ------------------------fazer-depois-----------------------------------
+  ------------------------TO-DO-----------------------------------
   dentro da página lista:
   ->> o primeiro item deve vir como selecionado dentro da pagina Lista
   ->> item selecionado deve alterar o estado do Redux
@@ -33,7 +24,7 @@ import { NavigationContainer } from '@react-navigation/native';
   
 -------------------------------------------------------------------------
 */
-export const Register = () => {
+export const Register = ( { navigation } ) => {
 
   
   const [nameUrl, setNameUrl] = useState('');
@@ -62,7 +53,17 @@ export const Register = () => {
       if (data !== null && validInput && data !== 'fistState') {
         const settingsArray = JSON.parse(data);
         settingsArray.push(newUrlEntrie);
-        AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray));
+        AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray))
+        .then(() => {
+          alert('servidor registrado com sucesso!')
+        })
+        .then(() => {
+          navigation.navigate('ViewServers')
+        });
+
+        // ->> fazer um .then(), passando msg quando adicionado com sucesso e
+        // depois outro pra navegar pra outra pagina(login).
+
       } else {
         alert('epa, nao pode haver input vazio!')
         const settingsArray = [];
@@ -71,6 +72,9 @@ export const Register = () => {
     .then(() => getSettings()) //opcional, pois apenas retorna console do get()
 
   }
+
+  // ->> fazer um .then(), passando msg quando adicionado com sucesso e
+  // depois outro pra navegar pra outra pagina(login).
 
   const getSettings = async () => {
     try {
