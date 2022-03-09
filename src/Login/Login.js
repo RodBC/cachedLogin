@@ -18,6 +18,9 @@ export const Login = ({ navigation }) => {
         AsyncStorage.getItem('@Settings').then(settings => {
           if (settings) {
             navigation.navigate('ViewServers');
+            console.log(settings)
+          } else{
+              navigation.navigate('Register')
           }
         })
       }, []);

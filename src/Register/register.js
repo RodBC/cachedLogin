@@ -38,7 +38,6 @@ export const Register = ( { navigation } ) => {
       baseUrl: baseUrl,
       baseImage: baseImageUrl,
     }
-
     let validInput = true
     Object.values(newUrlEntrie).map((value) =>{
       if (value == ""){
@@ -47,7 +46,8 @@ export const Register = ( { navigation } ) => {
     })
 
     await AsyncStorage.getItem('@Settings').then(data => {
-      if (data !== null && validInput && data !== 'fistState') {
+      if (validInput && data !== 'fistState') {
+        
         settingsArray.push(newUrlEntrie);
         AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray))
 
