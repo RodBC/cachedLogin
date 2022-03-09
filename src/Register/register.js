@@ -50,15 +50,22 @@ export const Register = () => {
       baseUrl: baseUrl,
       baseImage: baseImageUrl,
     }
+
+    let validInput = true
+    Object.values(newUrlEntrie).map((value) =>{
+      if (value == ""){
+        validInput = false
+      }
+    })
+    
     await AsyncStorage.getItem('@Settings').then(data => {
-      if (data !== null && data !== 'fistState') {
+      if (data !== null && validInput && data !== 'fistState') {
         const settingsArray = JSON.parse(data);
         settingsArray.push(newUrlEntrie);
         AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray));
       } else {
+        alert('epa, nao pode haver input vazio!')
         const settingsArray = [];
-        settingsArray.push(newUrlEntrie);
-        AsyncStorage.setItem('@Settings', JSON.stringify(settingsArray));
       }
     })
     .then(() => getSettings()) //opcional, pois apenas retorna console do get()
